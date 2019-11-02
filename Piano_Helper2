@@ -1,0 +1,41 @@
+#include "pch.h"
+#include <string>
+#include <iostream>
+#include <filesystem>
+namespace fs = std::experimental::filesystem;
+
+/*int main()
+{
+	std::string path = "C:\\Users\\shofm\\Desktop\\Omni";
+	std::vector <std::string> paths[100];
+	for (const auto & entry : fs::directory_iterator(path))
+		std::cout << entry.path() << std::endl;
+	return 0;
+}*/
+std::vector<std::string> FILES;
+//DISPLAYS LIST OF FILES IN DIRECTORY
+int main()
+{
+	std::string path("C:\\Users\\shofm\\Desktop\\Omni");
+	for (auto& p : fs::recursive_directory_iterator(path))
+	{
+		fs::path path = p.path();
+		std::string path_string = path.string();
+		for (auto &c : path_string)
+			c = tolower(c);
+		std::string extension_string = p.path().extension().string();
+		for (auto &c : extension_string)
+			c = tolower(c);
+		//std::string path_string = p.path.string();
+		/*std::transform(path_string.begin(), path_string.end(), lower_path_string, ::toupper);
+		/*std::string extension = std::to_string(p.path().extension());*/
+		if (extension_string == ".jpg")
+		{
+			std::cout << path_string << "\t" << p.path().filename() << '\n';
+			FILES.push_back(path_string);
+		}
+	}
+
+	return 0;
+}
+

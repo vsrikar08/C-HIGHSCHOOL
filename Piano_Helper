@@ -1,0 +1,37 @@
+#include <iostream>
+#include <fstream>
+#include "pch.h"
+#include <Windows.h>
+#pragma comment (lib, "Winmm.lib")
+using namespace std;
+std::vector<std::string> FILES;
+// playing previously recorded files and any other recorded file
+int main ()
+{
+	string filename;
+	// user will type in name
+		// asking user to type file name
+	cout << "Please enter the name of the file you want to open: " ;
+	cin >> filename;
+	string file_path = "DIRECTORY" + filename;
+	
+	// checking if file name exists
+	std::int16_t i;
+	std::bool is_file_error = true;
+	for (i = 0; i < FILES.size(); i++)
+	{
+		if (FILES[i] == file_path)
+			is_file_error = false;
+	}
+	if is_file_error
+		cout << "File does not exist, please re-type";
+	if (in_file.fail())
+		cout << "Error: file cannot be found." << endl;
+	
+	// playing the audio back
+	else
+	{
+		PlaySound(L"100Hz_44100Hz_16bit_05sec.wav", NULL, SND_FILENAME);
+	}
+	return 0;
+}

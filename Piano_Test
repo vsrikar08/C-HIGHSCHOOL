@@ -1,0 +1,61 @@
+#include "pch.h"
+#include <iostream>
+#include <string>
+#include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
+#include <SFML/Main.hpp>
+#include <SFML/Network.hpp>
+#include <SFML/Window.hpp>
+#include <SFML/System.hpp>
+#include <SFML/Audio.hpp>
+#include <SFML/Graphics.hpp>
+#include <iostream>
+
+int main()
+{
+	sf::SoundBuffer buffer;
+	sf::Sound sound;
+	sf::Music music;
+	if (!music.openFromFile("music.ogg"))
+		return -1;
+	music.play();
+	
+
+	while (window.isOpen())
+	{
+		sf::Event Event;
+		while(window.pollEvent(Event))
+		{
+			switch (Event.type)
+			{
+			case sf::Event::Closed:
+				window.close();
+				break;
+			case sf::Event::KeyPressed:
+				if (Event.key.code == sf::Keyboard::R)
+					recorder.start();
+				else if (Event.key.code == sf::Keyboard::P)
+				{
+					sf::Music music;
+					if (!music.openFromFile(filename))
+						return -1;
+					music.play();
+				}
+				else if (Event.key.code == sf::Keyboard::S)
+				{
+					recorder.stop();
+					buffer = recorder.getBuffer();
+					buffer.saveToFile("test.ogg")
+					sound.setBuffer(buffer);
+					sound.play();
+				}
+			} 
+		}
+		
+	}
+
+//std::vector<std::string> available = sf::SoundRecorder::getAvailableDevices();
+
+	
+	
+}
